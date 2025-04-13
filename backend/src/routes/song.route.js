@@ -1,10 +1,13 @@
 import { Router } from "express";
+import { getAllSongs, getFeaturedSongs, getMadeForYouSongs, getTrendingSongs } from "../controller/song.controller.js";
+import { protectRoute, requireAdmin } from "../middleware/auth.middleware.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.send("songs route with GET method");
-});
+router.get("/", protectRoute, requireAdmin, getAllSongs);
+router.get("/featured", getFeaturedSongs);
+router.get("/featured", getMadeForYouSongs);
+router.get("/featured", getTrendingSongs);
 
 
 export default router;
